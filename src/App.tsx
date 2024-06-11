@@ -1,28 +1,37 @@
 import { useState } from "react";
+import { produce } from 'immer';
 
 function App() {
-  const [tags, setTags] = useState(['HAPPY','CHEERFUL']);
+  const [bugs, setBugs] = useState([
+    { id: 1, title: 'Bug 1', fixed: false },
+    { id: 2, title: 'Bug 2', fixed: false },
+  ]);
 
   const handleClick = () => {
-    //Add
-    setTags([...tags,'adding this to the array'])
-
-    //Remove
-    setTags(tags.filter(tag => tag!='HAPPY'))
-
-    //Update
-    setTags(tags.map(tag => tag==='HAPPY' ? 'Happiness' : tag))
+    setBugs(produce(draft => {
+      const bug = draft.find(bug => bug.id === 1);
+      if (bug) bug.fixed = true;
+    }));
   };
 
-
   return (
-    <div>
+    <div>     
+      <ul>
+        {bugs.map(bug => (
+          <li key={bug.id}>
+            {bug.title} - {bug.fixed ? "Fixed" : "Not Fixed"}
+          </li>
+        ))}
+      </ul>
+      <br />
       <button onClick={handleClick} style={{ borderRadius: '6px', position: "fixed" }}>Click Here</button>
     </div>
   );
 }
 
 export default App;
+
+
 
 
 
