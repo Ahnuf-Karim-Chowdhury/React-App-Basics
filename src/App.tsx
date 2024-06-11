@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { produce } from 'immer';
 
 function App() {
   const [customer, setCustomer] = useState({
@@ -7,24 +8,20 @@ function App() {
       city: "The Bowery King",
       zipCode: 9411,
       area: {
-        dealer: "Vsauce",
+        dealer: "Vincent",
         dealerCode: 499
       }
     }
   });
 
   const handleClick = () => {
-    setCustomer({
-      ...customer,
-      address: {
-        ...customer.address,
-        zipCode: 512,
-        area: {
-          ...customer.address.area,
-          dealerCode: 522
-        }
-      }
-    });
+    setCustomer(produce(draft => {
+      draft.name="King Kong";
+      draft.address.city="Skull Island";
+      draft.address.zipCode = 512;
+      draft.address.area.dealer="GodZilla";
+      draft.address.area.dealerCode = 522;
+    }));
   };
 
   return (
@@ -44,8 +41,6 @@ function App() {
 }
 
 export default App;
-
-
 
 
 
