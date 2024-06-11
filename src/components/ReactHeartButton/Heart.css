@@ -1,0 +1,32 @@
+.heart {
+    transition: fill 0.3s ease, transform 0.3s ease;
+  }
+  
+  .heart.liked {
+    fill: red;
+    transform: scale(1.2);
+  }
+  
+  .heart.unliked {
+    transform: scale(1);
+  }
+  
+
+/* .heart {
+    transition: fill 0.3s ease;
+  }
+  
+  .heart.liked {
+    fill: red;
+  } */
+  
+/* 
+.heart {
+  transition: color 0.3s ease;
+}
+
+.heart.liked {
+  color: red;
+}
+
+*/

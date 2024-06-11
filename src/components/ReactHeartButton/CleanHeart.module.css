@@ -1,0 +1,21 @@
+.iconContainer {
+  display: inline-block;
+  cursor: pointer;
+  position: relative; /* To ensure absolute positioning of rightIconContainer works correctly */
+}
+
+.leftIconContainer {
+  transition: color 0.3s ease;
+}
+
+.rightIconContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px; /* Optional: Adjust padding as needed */
+  transition: color 0.3s ease;
+}
+
+.heartLiked {
+  color: red;
+}
