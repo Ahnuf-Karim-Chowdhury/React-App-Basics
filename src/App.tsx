@@ -1,28 +1,42 @@
 import { useState } from "react";
-import { produce } from 'immer';
 
 function App() {
-  const [bugs, setBugs] = useState([
-    { id: 1, title: 'Bug 1', fixed: false },
-    { id: 2, title: 'Bug 2', fixed: false },
-  ]);
+  const [customer, setCustomer] = useState({
+    name: "John Wick",
+    address: {
+      city: "The Bowery King",
+      zipCode: 9411,
+      area: {
+        dealer: "Vsauce",
+        dealerCode: 499
+      }
+    }
+  });
 
   const handleClick = () => {
-    setBugs(produce(draft => {
-      const bug = draft.find(bug => bug.id === 1);
-      if (bug) bug.fixed = true;
-    }));
+    setCustomer({
+      ...customer,
+      address: {
+        ...customer.address,
+        zipCode: 512,
+        area: {
+          ...customer.address.area,
+          dealerCode: 522
+        }
+      }
+    });
   };
 
   return (
-    <div>     
-      <ul>
-        {bugs.map(bug => (
-          <li key={bug.id}>
-            {bug.title} - {bug.fixed ? "Fixed" : "Not Fixed"}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <div>
+        <h2>Customer Information</h2>
+        <p>Name: {customer.name}</p>
+        <p>City: {customer.address.city}</p>
+        <p>Zip Code: {customer.address.zipCode}</p>
+        <p>Dealer: {customer.address.area.dealer}</p>
+        <p>Dealer Code: {customer.address.area.dealerCode}</p>
+      </div>
       <br />
       <button onClick={handleClick} style={{ borderRadius: '6px', position: "fixed" }}>Click Here</button>
     </div>
@@ -30,6 +44,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
