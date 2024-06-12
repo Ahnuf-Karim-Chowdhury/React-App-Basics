@@ -1,20 +1,20 @@
-import { useState } from "react";
-import Navbar from "./components/Cart+Navbar/Navbar";
-import Cart from "./components/Cart+Navbar/iCart";
+
+import ExpandableText from "./components/ExpandableText/ExpandableText";
 
 function App() {
-const [cartItems,setCartItems]=useState(['Product-01','Product-02'])
-
   return (
     <div>
-     <Navbar cartItemCount={cartItems.length} />
-     <Cart cartItems={cartItems} onClear={()=>{setCartItems([])}}/>
+      <h1>My App</h1>
+      <ExpandableText maxChar={100}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.
+      </ExpandableText>
     </div>
-
   );
 }
 
 export default App;
+
+
 
 
 
@@ -111,4 +111,32 @@ function App() {
     //Update
     setTags(tags.map(tag => tag==='HAPPY' ? 'Happiness' : tag))
   };
+*/
+
+/* 
+import { useState } from "react";
+import {produce} from "immer";
+
+function App() {
+  const [cartItems, setCartItems] = useState({
+    Price: 6,
+  });
+
+  const handleClick = () => {
+    setCartItems(
+      produce(cartItems, draft => {
+        draft.Price = 5;
+      })
+    );
+  };
+
+  return (
+    <div>
+      {cartItems.Price}
+      <button onClick={handleClick}>Update Price</button>
+    </div>
+  );
+}
+
+export default App;
 */
