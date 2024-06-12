@@ -1,42 +1,16 @@
 import { useState } from "react";
-import { produce } from 'immer';
+import Navbar from "./components/Cart+Navbar/Navbar";
+import Cart from "./components/Cart+Navbar/iCart";
 
 function App() {
-  const [customer, setCustomer] = useState({
-    name: "John Wick",
-    address: {
-      city: "The Bowery King",
-      zipCode: 9411,
-      area: {
-        dealer: "Vincent",
-        dealerCode: 499
-      }
-    }
-  });
-
-  const handleClick = () => {
-    setCustomer(produce(draft => {
-      draft.name="King Kong";
-      draft.address.city="Skull Island";
-      draft.address.zipCode = 512;
-      draft.address.area.dealer="GodZilla";
-      draft.address.area.dealerCode = 522;
-    }));
-  };
+const [cartItems,setCartItems]=useState(['Product-01','Product-02'])
 
   return (
     <div>
-      <div>
-        <h2>Customer Information</h2>
-        <p>Name: {customer.name}</p>
-        <p>City: {customer.address.city}</p>
-        <p>Zip Code: {customer.address.zipCode}</p>
-        <p>Dealer: {customer.address.area.dealer}</p>
-        <p>Dealer Code: {customer.address.area.dealerCode}</p>
-      </div>
-      <br />
-      <button onClick={handleClick} style={{ borderRadius: '6px', position: "fixed" }}>Click Here</button>
+     <Navbar cartItemCount={cartItems.length} />
+     <Cart cartItems={cartItems} onClear={()=>{setCartItems([])}}/>
     </div>
+
   );
 }
 
